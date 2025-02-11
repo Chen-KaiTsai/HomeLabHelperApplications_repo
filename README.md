@@ -2,4 +2,5 @@
 A collection of helper functions for my homelab Setup
 
 Please refer to the following Note for Server details and how I set up the server.
-https://hackmd.io/EhDRrZWEQ4it2FMZZPVE4w#Switch-Between-Different-version-of-GCC
+
+https://hackmd.io/@Erebustsai/SJPwQzOvh
