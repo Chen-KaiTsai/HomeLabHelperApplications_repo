@@ -3,7 +3,7 @@ import cv2
 import time
 
 print("Input top directory for both inputs and outputs")
-input_dir = input("input directory :")
+input_dir = input("input directory : ")
 
 input_path = os.path.join(os.getcwd(), input_dir)
 if not os.path.exists(input_path) :
@@ -20,7 +20,7 @@ mp4_files = [x for x in files if x.endswith(".mp4")]
 print("The total number of .mp4 files in the directory : " + str(len(mp4_files)))
 print("-" * 64 + "\n\n")
 
-output_dir = input("output directory :")
+output_dir = input("output directory : ")
 
 output_path = os.path.join(os.getcwd(), output_dir)
 if not os.path.exists(output_path) :
@@ -29,8 +29,9 @@ if not os.path.exists(output_path) :
     os.makedirs(output_path)
 
 print("Model names: 0 : realesr-animevideov3 |  1 : RealESRGAN_x4plus_anime_6B | 2 : RealESRGAN_x4plus | \
-                    3 : RealESRNet_x4plus | 4 : RealESRGAN_x2plus | 5 : realesr-general-x4v3")
-model_index = input("select model: ")
+3 : RealESRNet_x4plus | 4 : RealESRGAN_x2plus | 5 : realesr-general-x4v3")
+
+model_index = input("select model : ")
 if not model_index.isnumeric() :
     print("error : please input an index")
     exit()
@@ -51,6 +52,14 @@ else :
     print("error : model index out of bound")
     exit()
 
+print("Adjust the final output. Please keep final resolution under 4K")
+final_scale = input("enter the final scale : ")
+if final_scale.isalpha() :
+    print("error : please input an float or int")
+    exit()
+if float(final_scale) < 1 or float(final_scale) > 4 :
+    print("error : scale is out of bound (1, 4)")
+    exit()
 
 fail_count = 0
 for mp4_file in mp4_files :
@@ -71,7 +80,7 @@ for mp4_file in mp4_files :
     print("Start converting Video")
     start = time.time()
     cmd = "python inference_realesrgan_video.py -i \"" + video_path \
-        + "\" -o \"" + os.path.join(output_path, mp4_file) + "\" -n " + model_name
+        + "\" -o \"" + os.path.join(output_path, mp4_file) + "\" -n " + model_name + " -s " + final_scale
     print("CMD : ", cmd)
     result = os.system(cmd)
     result >> 8
