@@ -86,7 +86,8 @@ for mp4_file in mp4_files :
     result >> 8
     if not result == 0 :
         print("error : failed to upscale video file {}".format(mp4_file))
-        exit()
+        fail_count += 1
+        continue
     end = time.time()
 
     print("--- %s seconds ---" % (end - start))
