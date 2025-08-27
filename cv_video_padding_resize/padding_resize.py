@@ -126,5 +126,5 @@ for mp4_file in mp4_files:
     result_path = video_path.replace(".mp4", "_au.mp4")
     fvideo = ffmpeg.input(video_path)
     faudio = ffmpeg.input(audio_path)
-    ffmpeg.output(fvideo, faudio, v=1, a=1).output(result_path).run(overwrite_output=True)
+    ffmpeg.concat(fvideo, faudio, v=1, a=1).output(result_path).run(overwrite_output=True)
 
