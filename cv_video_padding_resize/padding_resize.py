@@ -1,9 +1,8 @@
 # Padding video to match the common video ratio
 # Read Videos under a dir
-# Assume input video resolution is smaller than desire resolution
+# Assume input video resolution is smaller than desired resolution
 # Padding to fit 16:9 or 4:3 automatically
-# Padding will be in the right and/or botton
-# Currently No Sound !!!!
+# Padding will be in the right and/or bottom
 
 import os
 import cv2
